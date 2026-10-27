@@ -41,7 +41,7 @@ You need: a Samsung smart TV from 2018 or later, a Mac or Linux computer (Window
 3. **Install the Tizen CLI** and create a Samsung certificate: [docs/INSTALL-TIZEN-TOOLS.md](docs/INSTALL-TIZEN-TOOLS.md).
 4. **Copy your TV's real apps and icons** (optional): `./tools/fetch-home-apps.sh <TV-IP>`
 5. **Install:** `./tools/deploy.sh <TV-IP>`
-6. **Your photos:** put them in `images/background/` (landscape, about 1920 px) and `images/memories/` (portrait 9:16) and an azan `.mp3` in `azan/`, delete the `demo-*` files, then run `./tools/deploy.sh <TV-IP>` again.
+6. **Your photos:** put them in `images/background/` (landscape, about 1920 px) and `images/memories/` (portrait 9:16) and your own azan `.mp3` in `azan/` if you prefer one, delete the `demo-*` files, then run `./tools/deploy.sh <TV-IP>` again.
 
 Problems? See [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
 
@@ -73,7 +73,7 @@ Settings: Up/Down select, Left/Right change, OK change or run.
 - **On the TV:** everything is in the Settings screen (gear icon, or OK on the idle screen).
 - **Starting defaults** (prayer off, city, school, theme, caption): edit `data/settings.js`.
 - **Photos:** `images/background/`, `images/memories/`. About 1920 px and 300 to 600 KB each keeps it smooth. Run `./tools/update-media.sh` or just redeploy.
-- **Azan:** `.mp3` files in `azan/`, chosen in Settings. Pick a different file for Fajr if you like.
+- **Azan:** two demo azan recordings are included in `azan/`. Add your own `.mp3` files there; choose one in Settings, and a different one for Fajr if you like.
 - **Fonts (optional):** drop `fonts/handwriting.ttf` for the caption. `css/style.css` also looks for SF Pro Display and Somar files in `fonts/` if you own them; otherwise the TV's default fonts are used.
 - **Logo:** replace `icon.png` (117 x 117 px, PNG). Store listings use 512 x 423.
 - **Cities:** add your own to `js/cities.js`, or choose "Custom coordinates" in Settings.
@@ -104,6 +104,6 @@ Try it on a computer: `./tools/update-media.sh && python3 -m http.server 8099`, 
 
 ## Credits and disclaimer
 
-Demo photos are included so the app looks right on first launch; replace them with your own. App names and logos (Netflix, YouTube and others) belong to their owners and appear only because the TV shows them; this project is not affiliated with or endorsed by Samsung, Netflix, Google or any app vendor. Use at your own risk.
+Demo photos and two demo azan recordings are included so the app works on first launch; replace them with your own. App names and logos (Netflix, YouTube and others) belong to their owners and appear only because the TV shows them; this project is not affiliated with or endorsed by Samsung, Netflix, Google or any app vendor. Use at your own risk.
 
 MIT licence. See [LICENSE](LICENSE).

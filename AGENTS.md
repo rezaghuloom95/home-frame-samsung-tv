@@ -93,7 +93,7 @@ Ask, then write the answers into `data/settings.js` (uncomment the lines):
 
 1. **Prayer times for Muslims?** Many people do not want them.
    - No: set `prayerEnabled: false`. The apps card moves down into that spot. Skip the rest of this step.
-   - Yes: ask the school (`madhab: 'sunni'` for 5 prayers or `'shia'` for 3 prayers: Fajr, Dhuhr, Maghrib) and the city (`city: '<id from js/cities.js>'`, or `'custom'` with `lat`/`lng`). Ask whether they have an azan `.mp3` (step 8).
+   - Yes: ask the school (`madhab: 'sunni'` for 5 prayers or `'shia'` for 3 prayers: Fajr, Dhuhr, Maghrib) and the city (`city: '<id from js/cities.js>'`, or `'custom'` with `lat`/`lng`). Tell them demo azan files are included and ask whether they want to add their own (step 8).
 2. **Time format:** `timeFormat: 12` or `24`.
 3. **Theme:** `theme: 'dark'` or `'light'`.
 4. **Caption** under the family-memories frame: `memTitle`.
@@ -124,7 +124,7 @@ Ask the person to **attach or drop in their images**:
 
 - **Background photos**: landscape, ideally 1920x1080 or larger. Put them in `images/background/`.
 - **Family memories**: portrait photos (9:16 works best). Put them in `images/memories/`.
-- **Azan** (only if prayer is on): an `.mp3` in `azan/`. They choose it later in TV Settings > Azan.
+- **Azan** (only if prayer is on): two demo azan recordings ship in `azan/` (`demo-azan-*`). If they have a preferred `.mp3`, put it in `azan/`. They choose it in TV Settings > Azan.
 
 Prepare them (use copies, not the originals):
 - Resize to about 1920 px on the long side, JPEG quality ~72, aiming for 300 to 600 KB each. TVs are slow at decoding big files.

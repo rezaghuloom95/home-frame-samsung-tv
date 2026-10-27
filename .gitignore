@@ -9,6 +9,7 @@ images/memories/*
 !images/memories/demo-*
 azan/*
 !azan/.gitkeep
+!azan/demo-*
 fonts/*
 !fonts/.gitkeep
 icons/*
