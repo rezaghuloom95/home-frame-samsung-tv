@@ -1,0 +1,18 @@
+.DS_Store
+
+# Your own photos, sounds, fonts and TV icons stay on your computer (demo-* files are the exception).
+images/background/*
+!images/background/.gitkeep
+!images/background/demo-*
+images/memories/*
+!images/memories/.gitkeep
+!images/memories/demo-*
+azan/*
+!azan/.gitkeep
+fonts/*
+!fonts/.gitkeep
+icons/*
+!icons/.gitkeep
+
+# Generated from your folders / your TV
+data/media.js

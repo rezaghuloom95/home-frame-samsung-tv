@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1920, user-scalable=no">
+<title>Home Frame</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="$WEBAPIS/webapis/webapis.js"></script>
+</head>
+<body class="theme-dark">
+
+<div id="bg">
+  <div id="bgLayers"><div class="layer"></div><div class="layer"></div></div>
+  <div id="bgShade"></div>
+</div>
+
+<div id="clock">
+  <div id="time"><span id="timeMain">--:--</span><span id="timeAmpm"></span></div>
+  <div id="date"></div>
+</div>
+
+<div id="memories">
+  <div id="frame">
+    <div class="layer"></div><div class="layer"></div>
+    <div id="frameEmpty">Add photos to<br>images/memories</div>
+  </div>
+  <div id="caption">Lovely Moments</div>
+</div>
+
+<div id="gear" class="glass" title="Settings">
+  <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+</div>
+
+<div id="dock">
+  <div id="apps" class="glass"><div id="appsClip"><div id="appsRow"></div></div></div>
+  <div id="bar" class="glass">
+    <div id="hijri">
+      <div id="hijriAr">--</div>
+      <div id="hijriEn"></div>
+    </div>
+    <div id="prayers"></div>
+    <div id="next">
+      <div id="nextLabel">Next</div>
+      <div id="nextCount">--:--:--</div>
+    </div>
+  </div>
+</div>
+
+<div id="settings" class="glass hidden"></div>
+
+<div id="azan" class="hidden">
+  <div id="azanInner">
+    <div id="azanRing"></div>
+    <div id="azanTitle">Dhuhr Prayer</div>
+    <div id="azanAr">صلاة الظهر</div>
+    <div id="azanSub">It's time for prayer &middot; press OK to dismiss</div>
+  </div>
+</div>
+
+<div id="toast"></div>
+<div id="sourceHint" class="hidden">Press Back to return</div>
+<div id="hint">Use the arrow keys for apps &middot; OK for settings</div>
+
+<script src="js/version.js"></script>
+<script src="data/media.js"></script>
+<script src="data/homeapps.js"></script>
+<script src="js/cities.js"></script>
+<script src="data/settings.js"></script>
+<script src="js/store.js"></script>
+<script src="js/prayer.js"></script>
+<script src="js/hijri.js"></script>
+<script src="js/slideshow.js"></script>
+<script src="js/azan.js"></script>
+<script src="js/launcher.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/app.js"></script>
+<script src="js/demo.js"></script>
+</body>
+</html>

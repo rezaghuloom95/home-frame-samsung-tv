@@ -1,0 +1,214 @@
+/* Home Frame - Apple glass x Tesla minimalism. Written for Chromium 76 (Tizen 6.0): no gap on flex, no inset, no aspect-ratio. */
+
+@font-face { font-family: 'Handwriting'; src: url('../fonts/handwriting.ttf'); }
+
+/* English: SF Pro Display (Latin subset). Arabic: Somar. Files live in fonts/ (not committed to the repo). */
+@font-face { font-family: 'SF Pro Display'; font-weight: 200; src: url('../fonts/SF-Pro-Display-Thin.otf'); }
+@font-face { font-family: 'SF Pro Display'; font-weight: 300; src: url('../fonts/SF-Pro-Display-Light.otf'); }
+@font-face { font-family: 'SF Pro Display'; font-weight: 400; src: url('../fonts/SF-Pro-Display-Regular.otf'); }
+@font-face { font-family: 'SF Pro Display'; font-weight: 500; src: url('../fonts/SF-Pro-Display-Medium.otf'); }
+@font-face { font-family: 'SF Pro Display'; font-weight: 600; src: url('../fonts/SF-Pro-Display-Semibold.otf'); }
+@font-face { font-family: 'Somar'; font-weight: 200 500; src: url('../fonts/Somar-Regular.otf'); }
+@font-face { font-family: 'Somar'; font-weight: 600 900; src: url('../fonts/Somar-SemiBold.otf'); }
+
+html { font-size: 0.8333vw; } /* 1rem = 16px on a 1920px-wide screen */
+html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
+
+body {
+  font-family: 'SF Pro Display', 'Somar', -apple-system, 'SamsungOne', 'Helvetica Neue', Arial, sans-serif;
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+}
+
+body.theme-dark {
+  --fg: #ffffff;
+  --fg2: rgba(255, 255, 255, 0.70);
+  --fg3: rgba(255, 255, 255, 0.42);
+  --glass: rgba(28, 30, 36, 0.40);
+  --glass-solid: rgba(28, 30, 36, 0.88);
+  --glass-line: rgba(255, 255, 255, 0.20);
+  --hi: rgba(255, 255, 255, 0.16);
+  --shade: 0, 0, 0;
+  --accent: #3e9bff;
+  --next: #ffd45c;
+  --panel: #14161b;
+  --base: linear-gradient(135deg, #090c14, #17213a 55%, #0b1626);
+}
+body.theme-light {
+  --fg: #101216;
+  --fg2: rgba(16, 18, 22, 0.70);
+  --fg3: rgba(16, 18, 22, 0.45);
+  --glass: rgba(255, 255, 255, 0.50);
+  --glass-solid: rgba(246, 247, 250, 0.92);
+  --glass-line: rgba(255, 255, 255, 0.75);
+  --hi: rgba(0, 0, 0, 0.07);
+  --shade: 255, 255, 255;
+  --accent: #0a6cff;
+  --next: #b03a00;
+  --panel: #f6f7fa;
+  --base: linear-gradient(135deg, #e9eef7, #f7f4ee 55%, #dfe8f3);
+}
+
+.hidden { display: none !important; }
+
+/* ---------- Background ---------- */
+#bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: var(--base); overflow: hidden; }
+#bgLayers { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+#bgLayers.blurred { -webkit-transform: scale(1.06); transform: scale(1.06); }
+#bgShade { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgb(var(--shade)); opacity: 0.3; }
+
+.layer {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+  opacity: 0; -webkit-transition: opacity 1.2s ease; transition: opacity 1.2s ease;
+}
+.layer.on { opacity: 1; }
+body.zoom #bgLayers .layer.on { -webkit-animation: drift 45s linear forwards; animation: drift 45s linear forwards; }
+@-webkit-keyframes drift { from { -webkit-transform: scale(1); } to { -webkit-transform: scale(1.08); } }
+@keyframes drift { from { transform: scale(1); } to { transform: scale(1.08); } }
+
+/* ---------- Clock ---------- */
+#clock { position: absolute; top: 4.2rem; left: 5rem; text-shadow: 0 2px 18px rgba(0, 0, 0, 0.28); }
+#time { font-size: 9rem; font-weight: 200; letter-spacing: -0.02em; line-height: 1; white-space: nowrap; }
+#timeAmpm { font-size: 2.4rem; font-weight: 400; margin-left: 1rem; color: var(--fg2); letter-spacing: 0.08em; }
+#date { margin-top: 0.8rem; margin-left: 0.4rem; font-size: 1.8rem; font-weight: 400; color: var(--fg2); letter-spacing: 0.02em; }
+
+/* ---------- Memories frame (9:16) ---------- */
+#memories { position: absolute; top: 3.2vh; right: 5rem; width: 25.9vh; text-align: center; }
+#frame {
+  position: relative; width: 25.9vh; height: 46vh; /* 9:16 */
+  border-radius: 1.8rem; overflow: hidden;
+  background: var(--glass-solid);
+  border: 1px solid var(--glass-line);
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.45), inset 0 0 0 1px var(--hi);
+}
+#frameEmpty { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: none; padding-top: 45%; box-sizing: border-box;
+  text-align: center; font-size: 1.3rem; line-height: 1.6; color: var(--fg3); letter-spacing: 0.04em; }
+#frame.empty #frameEmpty { display: block; }
+#caption { margin-top: 1.4vh; font-family: 'Handwriting', 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive;
+  font-size: 2.3rem; color: var(--fg); opacity: 0.92; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35); -webkit-transform: rotate(-2deg); transform: rotate(-2deg); }
+body.no-memories #memories { display: none; }
+
+/* ---------- Glass ---------- */
+.glass {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  border: 1px solid var(--glass-line);
+  box-shadow: 0 1.2rem 3.5rem rgba(0, 0, 0, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.28), inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+}
+/* Older TVs without backdrop-filter: use solid cards so text stays readable. */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) { .glass { background: var(--glass-solid); } }
+body.no-glass .glass { background: var(--glass-solid); -webkit-backdrop-filter: none; backdrop-filter: none; }
+
+/* ---------- Bottom dock: apps card above the prayer bar ---------- */
+#dock { position: absolute; left: 5rem; right: 5rem; bottom: 3.6vh; }
+#apps {
+  height: 18vh; border-radius: 2.4rem; margin-bottom: 1.6vh; box-sizing: border-box;
+  width: 100%; position: relative;
+}
+body.no-apps #apps { display: none; }
+/* Clip box is taller than the card so a focused tile can float above it. */
+#appsClip { position: absolute; left: 0; right: 0; top: -6vh; bottom: -2vh; overflow: hidden; border-radius: 2.4rem; }
+#appsRow { position: absolute; top: 6vh; left: 1.6rem; height: 18vh; white-space: nowrap; font-size: 0;
+  -webkit-transition: -webkit-transform 0.18s ease-out; transition: transform 0.18s ease-out; will-change: transform; }
+.tile { display: inline-block; vertical-align: top; width: 13vh; height: 13vh; margin: 2.5vh 1.6rem 0 0; position: relative;
+  border-radius: 1.5rem; -webkit-transition: -webkit-transform 0.12s ease-out; transition: transform 0.12s ease-out; will-change: transform; }
+.tile .tbox { position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 1.5rem; overflow: hidden; color: #fff; text-align: center;
+  box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.35); }
+.tile .tglyph { font-size: 2.6rem; font-weight: 600; line-height: 1; margin-top: 3.2vh; letter-spacing: 0.02em; }
+.tile .tname { font-size: 1.05rem; font-weight: 500; margin-top: 0.8vh; padding: 0 0.6rem; overflow: hidden; text-overflow: ellipsis; opacity: 0.92; }
+.tile img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.tile .tlabel { position: absolute; left: 0; right: 0; bottom: 0; padding: 2.2vh 0.8rem 0.8vh; font-size: 1.1rem; font-weight: 600; text-align: center; color: #fff;
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.7)); background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.7));
+  opacity: 0; -webkit-transition: opacity 0.2s; transition: opacity 0.2s; overflow: hidden; text-overflow: ellipsis; }
+.tile.focus { -webkit-transform: translateY(-1.6vh) scale(1.12); transform: translateY(-1.6vh) scale(1.12); z-index: 2;
+  box-shadow: 0 0.8rem 1.4rem rgba(0, 0, 0, 0.5), 0 0 0 3px var(--fg); }
+.tile.focus .tlabel { opacity: 1; }
+#appsEmpty { position: absolute; top: 0; left: 0; right: 0; bottom: 0; text-align: center; line-height: 18vh; font-size: 1.2rem; color: var(--fg2); letter-spacing: 0.04em; }
+
+#gear { position: absolute; top: 3.2vh; right: calc(25.9vh + 6.5rem); width: 4.6rem; height: 4.6rem; border-radius: 50%; color: var(--fg);
+  display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; -webkit-justify-content: center; justify-content: center; box-sizing: border-box; }
+body.no-memories #gear { right: 5rem; }
+#gear.focus { background: var(--fg); color: var(--panel); border-color: var(--fg); -webkit-transform: scale(1.1); transform: scale(1.1); }
+
+body.no-prayer #bar { display: none; }
+body.source-mode #bg, body.source-mode #clock, body.source-mode #memories, body.source-mode #dock, body.source-mode #gear, body.source-mode #hint { display: none !important; }
+body.source-mode { background: transparent; }
+#sourceHint { position: absolute; left: 50%; bottom: 4vh; -webkit-transform: translateX(-50%); transform: translateX(-50%); padding: 0.7rem 1.8rem; border-radius: 2rem;
+  background: rgba(0, 0, 0, 0.6); color: #fff; font-size: 1.3rem; letter-spacing: 0.06em; }
+#toast { position: absolute; left: 50%; bottom: 20vh; -webkit-transform: translateX(-50%); transform: translateX(-50%); max-width: 60%; padding: 0.9rem 2rem; border-radius: 1.6rem;
+  background: var(--panel); color: var(--fg); border: 1px solid var(--glass-line); font-size: 1.25rem; opacity: 0; -webkit-transition: opacity 0.3s; transition: opacity 0.3s; pointer-events: none; z-index: 60; }
+#toast.on { opacity: 1; }
+
+/* ---------- Prayer bar ---------- */
+#bar {
+  position: relative; height: 15vh;
+  border-radius: 2.4rem; display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center;
+  padding: 0 2.4rem; box-sizing: border-box;
+}
+#hijri { -webkit-flex: 0 0 24%; flex: 0 0 24%; padding-right: 1.6rem; border-right: 1px solid var(--glass-line); }
+#hijriAr { font-size: 2rem; font-weight: 500; line-height: 1.4; direction: rtl; text-align: left; }
+#hijriEn { margin-top: 0.3rem; font-size: 1.05rem; color: var(--fg2); letter-spacing: 0.06em; }
+
+#prayers { -webkit-flex: 1; flex: 1; min-width: 0; display: -webkit-flex; display: flex; -webkit-justify-content: space-around; justify-content: space-around; }
+.p { text-align: center; padding: 0.9rem 0.8rem; border-radius: 1.5rem; min-width: 8.6rem; border: 1px solid transparent; opacity: 0.62; }
+.pn { font-size: 1rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg2); }
+.pn .par { display: block; margin-top: 0.15rem; font-size: 1.15rem; letter-spacing: 0; text-transform: none; font-weight: 400; }
+.pt { margin-top: 0.4rem; font-size: 2.5rem; font-weight: 300; letter-spacing: -0.01em; white-space: nowrap; }
+.pt small { font-size: 1rem; margin-left: 0.35rem; color: var(--fg2); letter-spacing: 0.1em; }
+.p.next { opacity: 1; background: var(--hi); border-color: var(--glass-line); }
+.p.next .pn { color: var(--next); font-weight: 700; font-size: 1.15rem; }
+.p.next .pn .par { color: var(--next); font-weight: 600; font-size: 1.3rem; }
+.p.past { opacity: 0.38; }
+
+#next { -webkit-flex: 0 0 21%; flex: 0 0 21%; padding-left: 1.2rem; border-left: 1px solid var(--glass-line); text-align: right; }
+#nextLabel { font-size: 1rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg2); }
+#nextCount { margin-top: 0.4rem; font-size: 3.1rem; font-weight: 200; letter-spacing: 0.01em; font-variant-numeric: tabular-nums; }
+
+/* ---------- Settings ---------- */
+#settings {
+  position: absolute; top: 3vh; right: 3rem; bottom: 3vh; width: 48rem;
+  border-radius: 2rem; overflow-y: hidden; padding: 1.6rem 1.6rem 1rem; box-sizing: border-box;
+  -webkit-flex-direction: column; flex-direction: column;
+}
+#settings, body.no-glass #settings { background: var(--panel); -webkit-backdrop-filter: none; backdrop-filter: none; }
+#settings:not(.hidden) { display: -webkit-flex; display: flex; }
+#setTitle { font-size: 2rem; font-weight: 600; margin: 0.3rem 0.8rem 0.2rem; }
+#setHelp { font-size: 1.05rem; color: var(--fg2); margin: 0 0.8rem 1rem; }
+#setList { -webkit-flex: 1; flex: 1; overflow-y: hidden; position: relative; }
+.srow { display: -webkit-flex; display: flex; -webkit-justify-content: space-between; justify-content: space-between; -webkit-align-items: center; align-items: center;
+  min-height: 3.4rem; padding: 0 1.1rem; border-radius: 1rem; font-size: 1.4rem; margin-bottom: 0.15rem; }
+.srow .lab { color: var(--fg); }
+.srow .val { color: var(--fg2); text-align: right; max-width: 22rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.srow.focus { background: var(--fg); }
+.srow.focus .lab, .srow.focus .val { color: var(--glass-solid); }
+body.theme-dark .srow.focus .lab, body.theme-dark .srow.focus .val { color: #0c0d10; }
+.srow.act .lab { color: var(--accent); font-weight: 600; }
+.srow.info .val { color: var(--fg3); }
+.shead { margin: 1.1rem 0 0.3rem; padding: 0 1.1rem; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--fg3); }
+
+/* ---------- Azan overlay ---------- */
+#azan {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 50;
+  -webkit-backdrop-filter: blur(10px) brightness(0.5); backdrop-filter: blur(10px) brightness(0.5);
+  background: rgba(8, 12, 24, 0.7); color: #fff;
+  -webkit-align-items: center; align-items: center; -webkit-justify-content: center; justify-content: center;
+  text-align: center;
+}
+body.no-glass #azan { background: rgba(8, 12, 24, 0.94); -webkit-backdrop-filter: none; backdrop-filter: none; }
+#azan.show { display: -webkit-flex; display: flex; -webkit-animation: fadein 0.8s ease; animation: fadein 0.8s ease; }
+@-webkit-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+#azanRing { width: 11rem; height: 11rem; margin: 0 auto 2.4rem; border-radius: 50%; border: 2px solid rgba(255, 255, 255, 0.5);
+  -webkit-animation: pulse 2.6s ease-in-out infinite; animation: pulse 2.6s ease-in-out infinite; }
+@-webkit-keyframes pulse { 0%, 100% { -webkit-transform: scale(0.92); opacity: 0.45; } 50% { -webkit-transform: scale(1.08); opacity: 1; } }
+@keyframes pulse { 0%, 100% { transform: scale(0.92); opacity: 0.45; } 50% { transform: scale(1.08); opacity: 1; } }
+#azanTitle { font-size: 6.4rem; font-weight: 200; letter-spacing: -0.01em; }
+#azanAr { margin-top: 1rem; font-size: 4rem; font-weight: 400; }
+#azanSub { margin-top: 3rem; font-size: 1.4rem; letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.6); }
+
+/* ---------- Misc ---------- */
+#hint { position: absolute; left: 50%; top: 2.2rem; -webkit-transform: translateX(-50%); transform: translateX(-50%);
+  padding: 0.5rem 1.4rem; border-radius: 2rem; font-size: 1.1rem; letter-spacing: 0.06em; color: var(--fg2);
+  background: var(--glass); border: 1px solid var(--glass-line); opacity: 0; -webkit-transition: opacity 1s; transition: opacity 1s; pointer-events: none; }
+#hint.on { opacity: 1; }
