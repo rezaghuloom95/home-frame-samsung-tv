@@ -74,7 +74,7 @@ Settings: Up/Down select, Left/Right change, OK change or run.
 - **Starting defaults** (prayer off, city, school, theme, caption): edit `data/settings.js`.
 - **Photos:** `images/background/`, `images/memories/`. About 1920 px and 300 to 600 KB each keeps it smooth. Run `./tools/update-media.sh` or just redeploy.
 - **Azan:** two demo azan recordings are included in `azan/`. Add your own `.mp3` files there; choose one in Settings, and a different one for Fajr if you like.
-- **Fonts (optional):** drop `fonts/handwriting.ttf` for the caption. `css/style.css` also looks for SF Pro Display and Somar files in `fonts/` if you own them; otherwise the TV's default fonts are used.
+- **Fonts:** English text uses SF Pro Display and Arabic text uses Somar; both are in `fonts/` (see `fonts/NOTICE.md`). Drop `fonts/handwriting.ttf` for the handwritten caption (any handwriting font; Caveat is free). Missing fonts fall back to the TV's defaults.
 - **Logo:** replace `icon.png` (117 x 117 px, PNG). Store listings use 512 x 423.
 - **Cities:** add your own to `js/cities.js`, or choose "Custom coordinates" in Settings.
 
@@ -104,6 +104,6 @@ Try it on a computer: `./tools/update-media.sh && python3 -m http.server 8099`, 
 
 ## Credits and disclaimer
 
-Demo photos and two demo azan recordings are included so the app works on first launch; replace them with your own. App names and logos (Netflix, YouTube and others) belong to their owners and appear only because the TV shows them; this project is not affiliated with or endorsed by Samsung, Netflix, Google or any app vendor. Use at your own risk.
+Fonts, demo photos and two demo azan recordings are included so the app works on first launch; replace them with your own. App names and logos (Netflix, YouTube and others) belong to their owners and appear only because the TV shows them; this project is not affiliated with or endorsed by Samsung, Netflix, Google or any app vendor. Use at your own risk.
 
 MIT licence. See [LICENSE](LICENSE).

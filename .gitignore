@@ -12,6 +12,7 @@ azan/*
 !azan/demo-*
 fonts/*
 !fonts/.gitkeep
+!fonts/*.otf
 icons/*
 !icons/.gitkeep
 
